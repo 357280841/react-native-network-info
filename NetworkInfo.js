@@ -9,7 +9,20 @@ const NetworkInfo = {
   },
 
   async getBSSID() {
-    return await RNNetworkInfo.getBSSID();
+    let bssid = await RNNetworkInfo.getBSSID()
+    let arr = bssid.split(':')
+    let str = ''
+    arr.map((item,index)=>{
+      if(item.length == 1){
+          arr[index] = '0'+item
+      }
+      if(item.length == 0){
+          arr[index] = '00'
+      }
+      str = str+':'+arr[index]
+    })
+    str = str.substring(1)
+    return str.toLowerCase();
   },
 
   async getBroadcast() {
