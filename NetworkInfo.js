@@ -10,6 +10,9 @@ const NetworkInfo = {
 
   async getBSSID() {
     let bssid = await RNNetworkInfo.getBSSID()
+    if(!bssid){
+      return bssid
+    }
     let arr = bssid.split(':')
     let str = ''
     arr.map((item,index)=>{
